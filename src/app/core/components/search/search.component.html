@@ -1,0 +1,25 @@
+<mat-form-field appearance="outline" style="background-color: white;" fxFlex="100%">
+  <span matSuffix>
+    <button mat-icon-button style="transform: scale(0.7);" (click)="clear()"><mat-icon>close</mat-icon></button>
+    <button mat-icon-button [mat-menu-trigger-for]="filterMenu"><mat-icon>tune</mat-icon></button>
+  </span>
+  <mat-icon mat-button matPrefix>search</mat-icon>
+  <input matInput placeholder="Search..." [(ngModel)]="keyword">
+</mat-form-field>
+
+<mat-menu #filterMenu="matMenu">
+  <div class="menu-container" style="width: 200px;">
+    <button mat-menu-item>
+      Latest
+     </button>
+    <button mat-menu-item>
+      Ascending
+    </button>
+    <button mat-menu-item>
+      Descending
+    </button>
+    <button mat-menu-item>
+     Date Modified
+    </button>
+  </div>
+</mat-menu>

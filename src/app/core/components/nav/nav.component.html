@@ -1,0 +1,15 @@
+<mat-toolbar class="dynamic_nav">
+  <div class="pattern"></div>
+  <span class="brand">✨ FORMS</span>
+  <div class="spacer"></div>
+  <ng-container *ngIf="isLogin;else guest">
+    <div fxLayoutGap="10px">
+      <button mat-button routerLink="/dashboard" >Dashboard</button>
+      <button mat-button routerLink="/create">Create</button>
+    </div>
+  </ng-container>
+  <ng-template #guest>
+    <button mat-button routerLink="/login">Login</button>
+  </ng-template>
+
+</mat-toolbar>
