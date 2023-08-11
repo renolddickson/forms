@@ -1,13 +1,13 @@
-<mat-form-field appearance="outline" style="background-color: white;" fxFlex="100%">
+<mat-form-field appearance="outline" style="background-color: white;" fxFlex="100%" subscriptSizing="dynamic">
   <span matSuffix>
-    <button mat-icon-button style="transform: scale(0.7);" (click)="clear()"><mat-icon>close</mat-icon></button>
+    <button mat-icon-button style="transform: scale(0.7);" (click)="clear()" *ngIf="keyword"><mat-icon>close</mat-icon></button>
     <button mat-icon-button [mat-menu-trigger-for]="filterMenu"><mat-icon>tune</mat-icon></button>
   </span>
   <mat-icon mat-button matPrefix>search</mat-icon>
   <input matInput placeholder="Search..." [(ngModel)]="keyword">
 </mat-form-field>
 
-<mat-menu #filterMenu="matMenu">
+<mat-menu #filterMenu="matMenu" xPosition="before" yPosition="below">
   <div class="menu-container" style="width: 200px;">
     <button mat-menu-item>
       Latest
