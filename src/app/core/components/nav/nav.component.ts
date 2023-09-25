@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent {
-  isLogin!:boolean;
+  isLogin!: boolean;
   ngOnInit(): void {
-    this.isLogin=true
+    this.isLogin = true
   }
 }

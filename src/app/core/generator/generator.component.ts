@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./generator.component.scss']
 })
 export class GeneratorComponent {
-
+  showFiller = false;
 }
