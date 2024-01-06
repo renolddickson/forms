@@ -1,9 +1,9 @@
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #leftDrawer class="example-sidenav" mode="side">
-    <p>Left Side Drawer</p>
+  <mat-drawer #leftDrawer class="example-sidenav" mode="side" #ldrawer opened="true">
+    <app-plugins></app-plugins>
   </mat-drawer>
-  <mat-drawer #rightDrawer class="example-sidenav" mode="side" position="end">
-    <p>Right Side Drawer</p>
+  <mat-drawer #rightDrawer class="example-sidenav" [mode]="drawerMode" position="end" #rdrawer>
+    <app-editor></app-editor>
   </mat-drawer>
   <div class="example-sidenav-content">
     <button type="button" mat-button (click)="leftDrawer.open();rightDrawer.close()">
@@ -12,5 +12,34 @@
     <button type="button" mat-button (click)="rightDrawer.open();leftDrawer.close()">
       Toggle Right Drawer
     </button>
+    <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+      <ng-container *ngFor="let field of formDefinition">
+        <div>
+          <label for="{{ field.name }}">{{ field.label }}</label>
+          <ng-container [ngSwitch]="field.type">
+            <input *ngSwitchCase="'text'" type="text" [id]="field.name" [formControlName]="field.name"
+              [placeholder]="field.placeholder" />
+            <input *ngSwitchCase="'email'" type="email" [id]="field.name" [formControlName]="field.name"
+              [placeholder]="field.placeholder" />
+            <input *ngSwitchCase="'password'" type="password" [id]="field.name" [formControlName]="field.name"
+              [placeholder]="field.placeholder" />
+            <input *ngSwitchCase="'number'" type="number" [id]="field.name" [formControlName]="field.name"
+              [placeholder]="field.placeholder" />
+            <!-- Add more cases for other input types as needed -->
+          </ng-container>
+        </div>
+        <div *ngIf="dynamicForm.get(field.name)?.hasError('required') && dynamicForm.get(field.name)?.touched"
+          class="error-message">
+          This field is required.
+        </div>
+        <div *ngIf="dynamicForm.get(field.name)?.hasError('email') && dynamicForm.get(field.name)?.touched"
+          class="error-message">
+          Invalid email address.
+        </div>
+        <!-- Add more validation messages for different types as needed -->
+      </ng-container>
+
+      <button type="submit">Submit</button>
+    </form>
   </div>
 </mat-drawer-container>

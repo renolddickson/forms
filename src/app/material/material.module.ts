@@ -11,6 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 const Material = [
   MatToolbarModule,
@@ -24,7 +27,10 @@ const Material = [
   MatMenuModule,
   ReactiveFormsModule,
   MatDividerModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatCheckboxModule,
+  MatSelectModule,
+  MatAutocompleteModule
 ]
 @NgModule({
   declarations: [],

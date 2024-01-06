@@ -1,42 +1,39 @@
 <div class="login-container" fxLayout="row" fxLayout.lt-md="column">
   <div class="left" fxFlex="40%" fxFlex.lt-md="100%" fxHide.lt-sm="true">
-
+    <video id="background-video" autoplay loop muted poster="https://assets.codepen.io/6093409/river.jpg">
+      <source src="../../../../assets/bg.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="right" fxFlex="60%" fxFlex.lt-md="100%" fxLayoutAlign="center center">
-    <div class="right-container" fxLayout="column">
+    <div class="right-container" fxLayout="column" fxFlex="60%">
       <button mat-raised-button>
         <mat-icon>
           <img src="../../../../assets/google-logo.svg" alt="google">
         </mat-icon>
-        Sign up with Google</button>
-      <mat-divider></mat-divider>
-      <div class="form-container" fxLayout="column" fxLayoutGap="20px">
-        <div class="section" fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
-          <div class="name" fxLayout="column" fxFlex="50%" fxFlex.lt-sm="100%">
-            <mat-label>Name</mat-label>
-            <mat-form-field appearance="outline" subscriptSizing="dynamic">
-              <input matInput>
-            </mat-form-field>
-          </div>
-          <div class="username" fxLayout="column" fxFlex="50%" fxFlex.lt-sm="100%">
-            <mat-label>Username</mat-label>
-            <mat-form-field appearance="outline" subscriptSizing="dynamic">
-              <input matInput>
-            </mat-form-field>
-          </div>
+        Sign in with Google
+      </button>
+      <div class="divider" fxLayout="column">
+        <mat-divider></mat-divider>
+        <div class="or-container">
+          <span class="or-text">or</span>
         </div>
+      </div>
+      <div class="form-container" fxLayout="column" fxLayoutGap="20px" [formGroup]="loginForm">
         <div class="email" fxLayout="column">
-          <mat-label>Email</mat-label>
+          <mat-label>Email or Username</mat-label>
           <mat-form-field appearance="outline" subscriptSizing="dynamic">
-            <input matInput>
+            <input matInput formControlName="username">
           </mat-form-field>
         </div>
         <div class="password" fxLayout="column">
           <mat-label>Password</mat-label>
           <mat-form-field appearance="outline" subscriptSizing="dynamic">
-            <input matInput placeholder="8+ characters">
+            <input matInput formControlName="password">
           </mat-form-field>
         </div>
+        <div class="policy-text" fxLayoutAlign="end center"><a routerLink="reset_password">forget password?</a></div>
+        <button mat-button style="background-color: rgb(248, 89, 248);color: white;" (click)="onSubmit()">Login</button>
+        <span class="policy-text">Don't have an account? <a routerLink="/signup">Sign up</a></span>
       </div>
     </div>
   </div>

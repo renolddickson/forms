@@ -1,1 +1,26 @@
-<p>plugins works!</p>
+<div fxLayout="column">
+  <h2>Input Controls</h2>
+<mat-form-field appearance="outline">
+<mat-label>Text</mat-label>
+  <input matInput placeholder="Tyle your text here...">
+</mat-form-field>
+
+<mat-form-field class="example-full-width" appearance="outline">
+  <mat-label>Message</mat-label>
+  <textarea matInput placeholder="Type large text here..."></textarea>
+</mat-form-field>
+<h2>Selection Controls</h2>
+<mat-form-field class="example-full-width" appearance="fill" (click)="getCountries()">
+  <mat-label>Number</mat-label>
+  <input type="text"
+         placeholder="Pick one"
+         aria-label="Number"
+         matInput
+         [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let option of countries" [value]="option">
+      {{option?.region}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+</div>

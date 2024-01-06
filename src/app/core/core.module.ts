@@ -11,7 +11,6 @@ import { FormComponent } from './components/form/form.component';
 import { EditorComponent } from './components/editor/editor.component';
 
 
-
 @NgModule({
   declarations: [
     MainComponent,
