@@ -1,26 +1,88 @@
 <div fxLayout="column">
+  <div fxLayoutAlign="end ">
+    <button mat-icon-button (click)="common.changeView('plugin','list')"><mat-icon>
+      view_list
+    </mat-icon></button>
+    <button mat-icon-button  (click)="common.changeView('plugin','grid')"><mat-icon>
+      grid_view
+    </mat-icon></button>
+  </div>
   <h2>Input Controls</h2>
-<mat-form-field appearance="outline">
-<mat-label>Text</mat-label>
-  <input matInput placeholder="Tyle your text here...">
-</mat-form-field>
-
+  <ng-container *ngIf="common.plugin_view=='list'">   
+    <h5>Textbox</h5>
+    <mat-form-field appearance="outline">
+      <mat-label>Text box</mat-label>
+      <input matInput placeholder="Tyle your text here...">
+    </mat-form-field>
+<h5>Messagebox</h5>
 <mat-form-field class="example-full-width" appearance="outline">
-  <mat-label>Message</mat-label>
+  <mat-label>Message box</mat-label>
   <textarea matInput placeholder="Type large text here..."></textarea>
 </mat-form-field>
+</ng-container>
 <h2>Selection Controls</h2>
-<mat-form-field class="example-full-width" appearance="fill" (click)="getCountries()">
-  <mat-label>Number</mat-label>
+<h5>Basic selection</h5>
+<mat-form-field appearance="outline" (click)="getCountries()">
+  <mat-label>Single selection</mat-label>
+  <mat-select>
+    <mat-option *ngFor="let option of countries?.data" [value]="option.name">
+      {{option.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<h5>Multiple selection</h5>
+<mat-form-field appearance="outline" (click)="getCountries()">
+  <mat-label>Multi selection</mat-label>
+  <mat-select multiple>
+    <mat-option *ngFor="let option of countries?.data" [value]="option?.name">{{option?.name}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<h5>Selection with suggestion</h5>
+<mat-form-field class="example-full-width" appearance="outline" (click)="getCountries()">
+  <mat-label>Suggestion box</mat-label>
   <input type="text"
-         placeholder="Pick one"
-         aria-label="Number"
+         placeholder="select country"
+         [formControl]="country"
          matInput
          [matAutocomplete]="auto">
   <mat-autocomplete #auto="matAutocomplete">
-    <mat-option *ngFor="let option of countries" [value]="option">
-      {{option?.region}}
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      {{option}}
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>
+<h5>Checkbox</h5>
+    <section class="example-section">
+      <mat-checkbox >Checked</mat-checkbox>
+      <mat-checkbox >Indeterminate</mat-checkbox>
+    </section>
+    <h5 class="example-margin">Radio button</h5>
+    <mat-radio-group>
+      <mat-radio-button class="example-margin" value="after">After</mat-radio-button>
+      <mat-radio-button class="example-margin" value="before">Before</mat-radio-button>
+    </mat-radio-group>
+<h5>Date/Time picker</h5>
+<mat-form-field appearance="outline">
+  <mat-label>Choose a date</mat-label>
+  <input matInput [matDatepicker]="picker">
+  <mat-hint>MM/DD/YYYY</mat-hint>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+    <h2>Other controls</h2>
+    <h5>chips</h5>
+    <mat-form-field appearance="outline">
+      <mat-label>Keyword</mat-label>
+      <mat-chip-grid #chipGrid>
+        <mat-chip-row *ngFor="let fruit of selectedFruits" (removed)="remove(fruit)">
+          {{ fruit }}
+          <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      </mat-chip-grid>
+      <input placeholder="Press enter or comma to add" #fruitInput [matChipInputFor]="chipGrid" 
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             (matChipInputTokenEnd)="add($event)" />
+    </mat-form-field>
 </div>

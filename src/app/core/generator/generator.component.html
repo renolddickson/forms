@@ -1,15 +1,18 @@
+<mat-toolbar>
+    <button mat-icon-button (click)="ldrawer.toggle();rdrawer.close()"><mat-icon>menu</mat-icon></button>
+</mat-toolbar>
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #leftDrawer class="example-sidenav" mode="side" #ldrawer opened="true">
+  <mat-drawer class="example-sidenav" mode="side" #ldrawer opened="true">
     <app-plugins></app-plugins>
   </mat-drawer>
-  <mat-drawer #rightDrawer class="example-sidenav" [mode]="drawerMode" position="end" #rdrawer>
+  <mat-drawer class="example-sidenav" [mode]="'side'" position="end" #rdrawer>
     <app-editor></app-editor>
   </mat-drawer>
   <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="leftDrawer.open();rightDrawer.close()">
+    <button type="button" mat-button (click)="ldrawer.open();rdrawer.close()">
       Toggle Left Drawer
     </button>
-    <button type="button" mat-button (click)="rightDrawer.open();leftDrawer.close()">
+    <button type="button" mat-button (click)="rdrawer.open();ldrawer.close()">
       Toggle Right Drawer
     </button>
     <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
